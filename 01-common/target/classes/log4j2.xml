@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="info" monitorInterval="30">
+
+    <properties>
+        <property name="LOG_PATTERN">[%d{YYYY-MM-dd HH:mm:ss.SSS}][%-5level][%t][%c{10}:%L]: %msg%n</property>
+        <property name="LOG_HOME">D:/data/logs</property>
+        <property name="application">common</property>
+    </properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+
+        <!--异步的appender-->
+        <!--<Async name="AsyncConsole">
+            <AppenderRef ref="Console"/>
+        </Async>-->
+
+        <RollingFile name="RollingFile" fileName="${LOG_HOME}/${application}-server.log"
+                     filePattern="${LOG_HOME}/${application}-server-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <SizeBasedTriggeringPolicy size="1MB"/>
+            <!-- DefaultRolloverStrategy属性如不设置，则默认为最多同一文件夹下7个文件，这里设置了20 -->
+            <DefaultRolloverStrategy max="1"/>
+        </RollingFile>
+
+    </Appenders>
+
+    <Loggers>
+       <!-- 自定义Logger-->
+        <!--<Logger name="com.hkmx" level="trace" additivity="false">
+            <AppenderRef ref="RollingFile"/>
+        </Logger>-->
+
+        <!--混合异步-->
+        <AsyncLogger name="com.hkmx" level="info" includeLocation="false" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFile"/>
+        </AsyncLogger>
+
+        <!--根日志-->
+        <Root level="info" includeLocation="true">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFile"/>
+        </Root>
+    </Loggers>
+
+</Configuration>

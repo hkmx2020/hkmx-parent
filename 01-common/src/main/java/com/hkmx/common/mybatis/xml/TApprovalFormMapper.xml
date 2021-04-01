@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hkmx.common.mybatis.mapper.TApprovalFormMapper" >
+  <resultMap id="BaseResultMap" type="com.hkmx.common.mybatis.model.TApprovalForm" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="approval_no" property="approvalNo" jdbcType="VARCHAR" />
+    <result column="user_uid" property="userUid" jdbcType="VARCHAR" />
+    <result column="first_level_type" property="firstLevelType" jdbcType="TINYINT" />
+    <result column="second_level_type" property="secondLevelType" jdbcType="TINYINT" />
+    <result column="impl_travel" property="implTravel" jdbcType="TINYINT" />
+    <result column="traval_reason" property="travalReason" jdbcType="VARCHAR" />
+    <result column="origin_city" property="originCity" jdbcType="VARCHAR" />
+    <result column="destination_city" property="destinationCity" jdbcType="VARCHAR" />
+    <result column="begin_time" property="beginTime" jdbcType="BIGINT" />
+    <result column="end_time" property="endTime" jdbcType="BIGINT" />
+    <result column="travel_summary" property="travelSummary" jdbcType="VARCHAR" />
+    <result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+    <result column="expense_department" property="expenseDepartment" jdbcType="VARCHAR" />
+    <result column="settlement_method" property="settlementMethod" jdbcType="TINYINT" />
+    <result column="bank_account_uid" property="bankAccountUid" jdbcType="VARCHAR" />
+    <result column="approvers" property="approvers" jdbcType="VARCHAR" />
+    <result column="copy_users" property="copyUsers" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="reject_type" property="rejectType" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, approval_no, user_uid, first_level_type, second_level_type, impl_travel, traval_reason, 
+    origin_city, destination_city, begin_time, end_time, travel_summary, total_amount, 
+    expense_department, settlement_method, bank_account_uid, approvers, copy_users, status, 
+    reject_type, create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hkmx.common.mybatis.model.TApprovalFormExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_approval_form
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_approval_form
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_approval_form
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hkmx.common.mybatis.model.TApprovalFormExample" >
+    delete from t_approval_form
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hkmx.common.mybatis.model.TApprovalForm" >
+    insert into t_approval_form (id, approval_no, user_uid, 
+      first_level_type, second_level_type, impl_travel, 
+      traval_reason, origin_city, destination_city, 
+      begin_time, end_time, travel_summary, 
+      total_amount, expense_department, settlement_method, 
+      bank_account_uid, approvers, copy_users, 
+      status, reject_type, create_time, 
+      update_time)
+    values (#{id,jdbcType=INTEGER}, #{approvalNo,jdbcType=VARCHAR}, #{userUid,jdbcType=VARCHAR}, 
+      #{firstLevelType,jdbcType=TINYINT}, #{secondLevelType,jdbcType=TINYINT}, #{implTravel,jdbcType=TINYINT}, 
+      #{travalReason,jdbcType=VARCHAR}, #{originCity,jdbcType=VARCHAR}, #{destinationCity,jdbcType=VARCHAR}, 
+      #{beginTime,jdbcType=BIGINT}, #{endTime,jdbcType=BIGINT}, #{travelSummary,jdbcType=VARCHAR}, 
+      #{totalAmount,jdbcType=DECIMAL}, #{expenseDepartment,jdbcType=VARCHAR}, #{settlementMethod,jdbcType=TINYINT}, 
+      #{bankAccountUid,jdbcType=VARCHAR}, #{approvers,jdbcType=VARCHAR}, #{copyUsers,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{rejectType,jdbcType=TINYINT}, #{createTime,jdbcType=BIGINT}, 
+      #{updateTime,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hkmx.common.mybatis.model.TApprovalForm" >
+    insert into t_approval_form
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="approvalNo != null" >
+        approval_no,
+      </if>
+      <if test="userUid != null" >
+        user_uid,
+      </if>
+      <if test="firstLevelType != null" >
+        first_level_type,
+      </if>
+      <if test="secondLevelType != null" >
+        second_level_type,
+      </if>
+      <if test="implTravel != null" >
+        impl_travel,
+      </if>
+      <if test="travalReason != null" >
+        traval_reason,
+      </if>
+      <if test="originCity != null" >
+        origin_city,
+      </if>
+      <if test="destinationCity != null" >
+        destination_city,
+      </if>
+      <if test="beginTime != null" >
+        begin_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="travelSummary != null" >
+        travel_summary,
+      </if>
+      <if test="totalAmount != null" >
+        total_amount,
+      </if>
+      <if test="expenseDepartment != null" >
+        expense_department,
+      </if>
+      <if test="settlementMethod != null" >
+        settlement_method,
+      </if>
+      <if test="bankAccountUid != null" >
+        bank_account_uid,
+      </if>
+      <if test="approvers != null" >
+        approvers,
+      </if>
+      <if test="copyUsers != null" >
+        copy_users,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="rejectType != null" >
+        reject_type,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="approvalNo != null" >
+        #{approvalNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userUid != null" >
+        #{userUid,jdbcType=VARCHAR},
+      </if>
+      <if test="firstLevelType != null" >
+        #{firstLevelType,jdbcType=TINYINT},
+      </if>
+      <if test="secondLevelType != null" >
+        #{secondLevelType,jdbcType=TINYINT},
+      </if>
+      <if test="implTravel != null" >
+        #{implTravel,jdbcType=TINYINT},
+      </if>
+      <if test="travalReason != null" >
+        #{travalReason,jdbcType=VARCHAR},
+      </if>
+      <if test="originCity != null" >
+        #{originCity,jdbcType=VARCHAR},
+      </if>
+      <if test="destinationCity != null" >
+        #{destinationCity,jdbcType=VARCHAR},
+      </if>
+      <if test="beginTime != null" >
+        #{beginTime,jdbcType=BIGINT},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=BIGINT},
+      </if>
+      <if test="travelSummary != null" >
+        #{travelSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="totalAmount != null" >
+        #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="expenseDepartment != null" >
+        #{expenseDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementMethod != null" >
+        #{settlementMethod,jdbcType=TINYINT},
+      </if>
+      <if test="bankAccountUid != null" >
+        #{bankAccountUid,jdbcType=VARCHAR},
+      </if>
+      <if test="approvers != null" >
+        #{approvers,jdbcType=VARCHAR},
+      </if>
+      <if test="copyUsers != null" >
+        #{copyUsers,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="rejectType != null" >
+        #{rejectType,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hkmx.common.mybatis.model.TApprovalFormExample" resultType="java.lang.Integer" >
+    select count(*) from t_approval_form
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_approval_form
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.approvalNo != null" >
+        approval_no = #{record.approvalNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userUid != null" >
+        user_uid = #{record.userUid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.firstLevelType != null" >
+        first_level_type = #{record.firstLevelType,jdbcType=TINYINT},
+      </if>
+      <if test="record.secondLevelType != null" >
+        second_level_type = #{record.secondLevelType,jdbcType=TINYINT},
+      </if>
+      <if test="record.implTravel != null" >
+        impl_travel = #{record.implTravel,jdbcType=TINYINT},
+      </if>
+      <if test="record.travalReason != null" >
+        traval_reason = #{record.travalReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.originCity != null" >
+        origin_city = #{record.originCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.destinationCity != null" >
+        destination_city = #{record.destinationCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.beginTime != null" >
+        begin_time = #{record.beginTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.endTime != null" >
+        end_time = #{record.endTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.travelSummary != null" >
+        travel_summary = #{record.travelSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalAmount != null" >
+        total_amount = #{record.totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.expenseDepartment != null" >
+        expense_department = #{record.expenseDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settlementMethod != null" >
+        settlement_method = #{record.settlementMethod,jdbcType=TINYINT},
+      </if>
+      <if test="record.bankAccountUid != null" >
+        bank_account_uid = #{record.bankAccountUid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.approvers != null" >
+        approvers = #{record.approvers,jdbcType=VARCHAR},
+      </if>
+      <if test="record.copyUsers != null" >
+        copy_users = #{record.copyUsers,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.rejectType != null" >
+        reject_type = #{record.rejectType,jdbcType=TINYINT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_approval_form
+    set id = #{record.id,jdbcType=INTEGER},
+      approval_no = #{record.approvalNo,jdbcType=VARCHAR},
+      user_uid = #{record.userUid,jdbcType=VARCHAR},
+      first_level_type = #{record.firstLevelType,jdbcType=TINYINT},
+      second_level_type = #{record.secondLevelType,jdbcType=TINYINT},
+      impl_travel = #{record.implTravel,jdbcType=TINYINT},
+      traval_reason = #{record.travalReason,jdbcType=VARCHAR},
+      origin_city = #{record.originCity,jdbcType=VARCHAR},
+      destination_city = #{record.destinationCity,jdbcType=VARCHAR},
+      begin_time = #{record.beginTime,jdbcType=BIGINT},
+      end_time = #{record.endTime,jdbcType=BIGINT},
+      travel_summary = #{record.travelSummary,jdbcType=VARCHAR},
+      total_amount = #{record.totalAmount,jdbcType=DECIMAL},
+      expense_department = #{record.expenseDepartment,jdbcType=VARCHAR},
+      settlement_method = #{record.settlementMethod,jdbcType=TINYINT},
+      bank_account_uid = #{record.bankAccountUid,jdbcType=VARCHAR},
+      approvers = #{record.approvers,jdbcType=VARCHAR},
+      copy_users = #{record.copyUsers,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=TINYINT},
+      reject_type = #{record.rejectType,jdbcType=TINYINT},
+      create_time = #{record.createTime,jdbcType=BIGINT},
+      update_time = #{record.updateTime,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hkmx.common.mybatis.model.TApprovalForm" >
+    update t_approval_form
+    <set >
+      <if test="approvalNo != null" >
+        approval_no = #{approvalNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userUid != null" >
+        user_uid = #{userUid,jdbcType=VARCHAR},
+      </if>
+      <if test="firstLevelType != null" >
+        first_level_type = #{firstLevelType,jdbcType=TINYINT},
+      </if>
+      <if test="secondLevelType != null" >
+        second_level_type = #{secondLevelType,jdbcType=TINYINT},
+      </if>
+      <if test="implTravel != null" >
+        impl_travel = #{implTravel,jdbcType=TINYINT},
+      </if>
+      <if test="travalReason != null" >
+        traval_reason = #{travalReason,jdbcType=VARCHAR},
+      </if>
+      <if test="originCity != null" >
+        origin_city = #{originCity,jdbcType=VARCHAR},
+      </if>
+      <if test="destinationCity != null" >
+        destination_city = #{destinationCity,jdbcType=VARCHAR},
+      </if>
+      <if test="beginTime != null" >
+        begin_time = #{beginTime,jdbcType=BIGINT},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=BIGINT},
+      </if>
+      <if test="travelSummary != null" >
+        travel_summary = #{travelSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="totalAmount != null" >
+        total_amount = #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="expenseDepartment != null" >
+        expense_department = #{expenseDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementMethod != null" >
+        settlement_method = #{settlementMethod,jdbcType=TINYINT},
+      </if>
+      <if test="bankAccountUid != null" >
+        bank_account_uid = #{bankAccountUid,jdbcType=VARCHAR},
+      </if>
+      <if test="approvers != null" >
+        approvers = #{approvers,jdbcType=VARCHAR},
+      </if>
+      <if test="copyUsers != null" >
+        copy_users = #{copyUsers,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="rejectType != null" >
+        reject_type = #{rejectType,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hkmx.common.mybatis.model.TApprovalForm" >
+    update t_approval_form
+    set approval_no = #{approvalNo,jdbcType=VARCHAR},
+      user_uid = #{userUid,jdbcType=VARCHAR},
+      first_level_type = #{firstLevelType,jdbcType=TINYINT},
+      second_level_type = #{secondLevelType,jdbcType=TINYINT},
+      impl_travel = #{implTravel,jdbcType=TINYINT},
+      traval_reason = #{travalReason,jdbcType=VARCHAR},
+      origin_city = #{originCity,jdbcType=VARCHAR},
+      destination_city = #{destinationCity,jdbcType=VARCHAR},
+      begin_time = #{beginTime,jdbcType=BIGINT},
+      end_time = #{endTime,jdbcType=BIGINT},
+      travel_summary = #{travelSummary,jdbcType=VARCHAR},
+      total_amount = #{totalAmount,jdbcType=DECIMAL},
+      expense_department = #{expenseDepartment,jdbcType=VARCHAR},
+      settlement_method = #{settlementMethod,jdbcType=TINYINT},
+      bank_account_uid = #{bankAccountUid,jdbcType=VARCHAR},
+      approvers = #{approvers,jdbcType=VARCHAR},
+      copy_users = #{copyUsers,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      reject_type = #{rejectType,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

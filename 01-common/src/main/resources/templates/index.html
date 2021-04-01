@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script>
+
+    // 登录成功,获取详情
+    function login() {
+        var json ={
+            "mobile":"17611575766",
+            "code":"096467",
+            "type":"0"
+        };
+        $.ajax({
+            type: 'post',
+            url: 'http://10.1.36.35:8080/api/login',
+            data: JSON.stringify(json),
+            contentType: "application/json", // 提交数据类型
+            xhrFields: {
+                withCredentials: true
+            },
+            dataType: 'json',
+            success: function (data) {
+                alert("登录结果:" + JSON.stringify(data));
+                var token = data.result; // 登录成功后返回的token
+                alert("token:" + token)
+                $.cookie("GCSESSIONID", token, {expires: 7})
+            },
+            error: function (msg) {
+                alert('登录失败' + JSON.stringify(msg));
+            }
+        });
+    }
+
+    function add() {
+        $.ajax({
+            type: 'post',
+            url: 'http://10.1.36.35:8080/api/device',
+            data: '{"name":"北北垃圾分类规则"}',
+            contentType: "application/json", //提交数据类型
+            xhrFields: {
+                withCredentials: true
+            },
+            dataType: 'json',
+            success: function (data) {
+                alert("新增垃圾分类结果成功:" + JSON.stringify(data));
+            },
+            error: function (msg) {
+                alert('新增垃圾分类结果失败' + JSON.stringify(msg));
+            }
+        });
+    }
+
+    function getDeviceModel() {
+        $.ajax({
+            type: 'get',
+            url: 'http://10.1.36.35:8080/api/deviceModel',
+            contentType: "application/json",
+            xhrFields: {
+                withCredentials: true
+            },
+            dataType: 'json',
+            success: function (data) {
+                alert("新增垃圾分类结果成功:" + JSON.stringify(data));
+            },
+            error: function (msg) {
+                alert('新增垃圾分类结果失败' + JSON.stringify(msg));
+            }
+        });
+    }
+
+    function getDeviceDetail() {
+        $.ajax({
+            type: 'get',
+            url: 'http://10.1.36.35:8080/api/device/b20083603bcc4a8fabed6bc68006e1d0',
+            contentType: "application/json",
+            xhrFields: {
+                withCredentials: true
+            },
+            dataType: 'json',
+            success: function (data) {
+                alert("获取设备详情成功:" + JSON.stringify(data));
+            },
+            error: function (msg) {
+                alert('获取设备详情失败' + JSON.stringify(msg));
+            }
+        });
+    }
+
+    function getDeviceMonitorList() {
+        $.ajax({
+            type: 'get',
+            url: 'http://10.1.36.35:8080/api/device/monitoring?pageNum=1&pageSize=10',
+            contentType: "application/json",
+            xhrFields: {
+                withCredentials: true
+            },
+            dataType: 'json',
+            success: function (data) {
+                alert("获取监控列表成功:" + JSON.stringify(data));
+            },
+            error: function (msg) {
+                alert('获取监控列表失败' + JSON.stringify(msg));
+            }
+        });
+    }
+
+    // 退出
+    function logout() {
+        var token = localStorage.getItem("token");
+        console.log("token:" + token)
+        alert('取出token' + token);
+        $.ajax({
+            type: 'post',
+            url: 'http://10.1.36.35:8080/api/admin/business/logout',
+            data: '{"userName":"superadmin","passWord":"123456","type":"0"}',
+            contentType: "application/json", //提交数据类型
+            xhrFields: {
+                withCredentials: true
+            },
+            dataType: 'json',
+            success: function (data) {
+                alert("退出成功:" + JSON.stringify(data));
+                localStorage.removeItem("token");
+            },
+            error: function (msg) {
+                alert('退出失败' + JSON.stringify(msg));
+            }
+        });
+    }
+</script>
+
+<body>
+
+<button onclick="login()">登录</button>
+<br><br><br>
+<button onclick="add()">新增设备</button><br><br><br>
+
+<br><br><br>
+<button onclick="logout()">退出</button>
+<br>
+<br><br>
+<br><br>
+
+</body>
+</html>
