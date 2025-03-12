@@ -22,7 +22,7 @@ import java.util.Map;
 @Slf4j
 public class MyController {
 
-    public static final Logger LOGGER =  LogManager.getLogger(MyController.class);
+    public static final Logger LOGGER = LogManager.getLogger(MyController.class);
 
     @PostMapping("/mytest")
     public Map mytest(@RequestHeader String token) throws IOException {

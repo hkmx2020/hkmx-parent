@@ -7,21 +7,21 @@ import java.util.Map;
 
 public class CustomPartitioner implements Partitioner {
 
-	@Override
-	public void configure(Map<String, ?> configs) {
-		
-	}
+    @Override
+    public void configure(Map<String, ?> configs) {
 
-	@Override
-	public int partition(String topic, Object key, byte[] keyBytes, Object value, byte[] valueBytes, Cluster cluster) {
+    }
+
+    @Override
+    public int partition(String topic, Object key, byte[] keyBytes, Object value, byte[] valueBytes, Cluster cluster) {
         // 控制分区
-		return 1;
-	}
+        return 1;
+    }
 
-	@Override
-	public void close() {
-		
-	}
+    @Override
+    public void close() {
+
+    }
 }
 
 

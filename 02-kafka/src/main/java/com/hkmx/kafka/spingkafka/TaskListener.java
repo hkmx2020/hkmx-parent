@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 /**
  * 比如现在单机环境下，我们需要利用Kafka做数据持久化的功能，由于用户活跃的时间为早上10点至晚上12点，那在这个时间段做一个大数据量的持久化可能会影响
  * 数据库性能导致用户体验降低，我们可以选择在用户活跃度低的时间段去做持久化的操作，也就是晚上12点后到第二条的早上10点前。
- *
  */
 
 @Slf4j
@@ -38,7 +37,7 @@ public class TaskListener {
         return container;
     }
 
-    @KafkaListener(id = "durable", topics = "wtest",containerFactory = "delayContainerFactory")
+    @KafkaListener(id = "durable", topics = "wtest", containerFactory = "delayContainerFactory")
     public void durableListener(String data) {
         // 这里做数据持久化的操作
         log.info("topic.quick.durable receive : " + data);
@@ -47,7 +46,7 @@ public class TaskListener {
 
     /**
      * 项目启动的时候监听容器是未启动状态，而resume是恢复的意思不是启动的意思，所以我们需要判断容器是否运行，如果运行则调用resume方法，否则调用start方法
-     *
+     * <p>
      * 定时器，每天凌晨0点开启监听
      */
     @Scheduled(cron = "0 0 0 * * ?")

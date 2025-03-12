@@ -33,36 +33,36 @@ public class QuartzController {
 
     @GetMapping("/quartz/test")
     @ResponseBody
-    public String quartz() throws SchedulerException,  ParseException {
+    public String quartz() throws SchedulerException, ParseException {
 
         //1.创建Scheduler的工厂
         Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
 
         // 2.年日历,  排除年日历中的天,  可以添加多个
         AnnualCalendar annualCalendar = new AnnualCalendar();
-        Calendar fourthOfJuly = new GregorianCalendar(2020,  7,  8);
-        annualCalendar.setDayExcluded(fourthOfJuly,  true);
+        Calendar fourthOfJuly = new GregorianCalendar(2020, 7, 8);
+        annualCalendar.setDayExcluded(fourthOfJuly, true);
 
         // 3.Cron 日历,  排除 20-40 秒
         String excludeExpression = "0-20,40-59 * * * * ?";
         CronCalendar cronCalendar = new CronCalendar(excludeExpression);
 
         // 4.每日日历,  时间反转,  为 true 表示只有这次时间段才会被执行,  为 false 表示排除这时间段
-        DailyCalendar dailyCalendar = new DailyCalendar("12:17:30",  "12:18:20");
+        DailyCalendar dailyCalendar = new DailyCalendar("12:17:30", "12:18:20");
         dailyCalendar.setInvertTimeRange(true);
 
 
         // 5.假日日历
         HolidayCalendar holidayCalendar = new HolidayCalendar();
-        holidayCalendar.addExcludedDate( new Date());
+        holidayCalendar.addExcludedDate(new Date());
 
         // 6. 月日历
         MonthlyCalendar monthlyCalendar = new MonthlyCalendar();
-        monthlyCalendar.setDayExcluded(2,  true);
+        monthlyCalendar.setDayExcluded(2, true);
 
         // 7.周日历
         WeeklyCalendar weeklyCalendar = new WeeklyCalendar();
-        weeklyCalendar.setDayExcluded(Calendar.THURSDAY,  true);
+        weeklyCalendar.setDayExcluded(Calendar.THURSDAY, true);
 
         /**
          * 8.组合日历
@@ -74,20 +74,20 @@ public class QuartzController {
          * 日期的时候会先判断 combinationDailyCalendar 的时间范围，然后再判断 combinationWeeklyCalendar 是时间范围，当条件都满足的时候，
          * 触发器才会被触发
          */
-        DailyCalendar combinationDailyCalendar = new DailyCalendar("8:00:00",  "17:00:00");
+        DailyCalendar combinationDailyCalendar = new DailyCalendar("8:00:00", "17:00:00");
         dailyCalendar.setInvertTimeRange(false);
         WeeklyCalendar combinationWeeklyCalendar = new WeeklyCalendar(combinationDailyCalendar);
 
 
-        scheduler.addCalendar("holidayCalendar",  holidayCalendar,  false,  false);
+        scheduler.addCalendar("holidayCalendar", holidayCalendar, false, false);
 
         // name 格式 sid
         String name = "name";
         String group = "schedule";
 
         JobDetail jobDetail = JobBuilder.newJob(MyJob.class)
-                .withIdentity(name,  group)
-                .usingJobData(name,  group)
+                .withIdentity(name, group)
+                .usingJobData(name, group)
                 .requestRecovery(true)
                 .storeDurably(true)
                 .build();
@@ -120,14 +120,12 @@ public class QuartzController {
                 .build();
 
 
-
-        scheduler.scheduleJob(jobDetail,  trigger);
+        scheduler.scheduleJob(jobDetail, trigger);
 
         return "welcome to myworld 神雕侠侣";
     }
 
     public static void main(String[] args) {
-
 
 
     }

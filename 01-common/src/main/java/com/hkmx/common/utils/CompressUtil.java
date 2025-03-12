@@ -48,7 +48,7 @@ public class CompressUtil {
         String descFile = getFileName(srcFile);
 
         try (GZIPInputStream gzis = new GZIPInputStream(new FileInputStream(srcFile));
-             FileOutputStream fos = new FileOutputStream(descFile);){
+             FileOutputStream fos = new FileOutputStream(descFile);) {
             byte[] buf = new byte[1024];
             int len;
             while ((len = gzis.read(buf)) > 0) {

@@ -306,11 +306,11 @@ public class DateUtil {
     /**
      * 每天日期增加1天，且设置时间为 00:00:00
      *
-     * @param date      日期
+     * @param date 日期
      * @return 增加天数后的日期
      */
     public static Date addDayOne(Date date) {
-        String date1 = DateUtil.DateToString(date, DateStyle.YYYY_MM_DD)+" 00:00:00";
+        String date1 = DateUtil.DateToString(date, DateStyle.YYYY_MM_DD) + " 00:00:00";
         date = DateUtil.StringToDate(date1, DateStyle.YYYY_MM_DD_HH_MM);
         return addInteger(date, Calendar.DATE, 1);
     }
@@ -822,30 +822,31 @@ public class DateUtil {
         return date;
     }
 
-    public enum ProNextEnum{
-        PREVIOUS,NEXT
+    public enum ProNextEnum {
+        PREVIOUS, NEXT
     }
+
     /**
      * 获取当前时间的下个月的最后一天和上个月的第一天
      *
-     * @return  key:PREVIOUS  NEXT
+     * @return key:PREVIOUS  NEXT
      */
-    public static Map<ProNextEnum,Date> getPreviousAndNextMaxDate(){
-        Map<ProNextEnum,Date> map = new HashMap<>();
+    public static Map<ProNextEnum, Date> getPreviousAndNextMaxDate() {
+        Map<ProNextEnum, Date> map = new HashMap<>();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
-        calendar.set(Calendar.HOUR_OF_DAY,0);
-        calendar.set(Calendar.MINUTE,0);
-        calendar.set(Calendar.SECOND,0);
-        calendar.add(Calendar.MONTH,-1);
-        calendar.set(Calendar.DAY_OF_MONTH,calendar.getMinimum(Calendar.DAY_OF_MONTH));
-        map.put(ProNextEnum.PREVIOUS,calendar.getTime());
-        calendar.add(Calendar.MONTH,2);
-        calendar.set(Calendar.DAY_OF_MONTH,calendar.getMaximum(Calendar.DAY_OF_MONTH));
-        calendar.set(Calendar.HOUR_OF_DAY,23);
-        calendar.set(Calendar.MINUTE,59);
-        calendar.set(Calendar.SECOND,59);
-        map.put(ProNextEnum.NEXT,calendar.getTime());
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.add(Calendar.MONTH, -1);
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getMinimum(Calendar.DAY_OF_MONTH));
+        map.put(ProNextEnum.PREVIOUS, calendar.getTime());
+        calendar.add(Calendar.MONTH, 2);
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getMaximum(Calendar.DAY_OF_MONTH));
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.SECOND, 59);
+        map.put(ProNextEnum.NEXT, calendar.getTime());
         return map;
     }
 

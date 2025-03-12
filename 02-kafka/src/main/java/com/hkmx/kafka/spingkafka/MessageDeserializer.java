@@ -5,7 +5,7 @@ import org.apache.kafka.common.serialization.Deserializer;
 import java.util.Map;
 
 
-public class MessageDeserializer  implements Deserializer<CustomeMessage> {
+public class MessageDeserializer implements Deserializer<CustomeMessage> {
 
     @Override
     public void configure(Map<String, ?> configs, boolean isKey) {

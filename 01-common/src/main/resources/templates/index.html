@@ -10,10 +10,10 @@
 
     // 登录成功,获取详情
     function login() {
-        var json ={
-            "mobile":"17611575766",
-            "code":"096467",
-            "type":"0"
+        var json = {
+            "mobile": "17611575766",
+            "code": "096467",
+            "type": "0"
         };
         $.ajax({
             type: 'post',
@@ -132,17 +132,90 @@
             }
         });
     }
+
+    function send() {
+       var data =  {
+           "msgtype": "markdown",
+           "markdown": {
+               "content": "已用流量：<font>5.94 GB</font> 超过阈值：3GB"
+           }
+       };
+
+        $.ajax({
+            type: 'post',
+            url: 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=794593a7-9eb9-4435-b2cc-c500f6b3cab2',
+            data: JSON.stringify(data),
+            contentType: "application/json", //提交数据类型
+            xhrFields: {
+                withCredentials: false
+            },
+            headers: {
+                'Access-Control-Allow-Credentials' : true,
+                'Access-Control-Allow-Origin':'http://localhost:8084',
+                'Access-Control-Allow-Methods':'*',
+                'Access-Control-Allow-Headers':'application/json',
+                "user-agent": "Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Mobile Safari/537.36",
+                "referer": "https://qyapi.weixin.qq.com",
+                "host": "qyapi.weixin.qq.com",
+                "X-Content-Type-Options": "nosniff",
+                "X-Frame-Options": "DENY",
+            },
+            dataType: 'jsonp',
+            success: function (data) {
+                console.log(data);
+                alert("发送消息结果:" + JSON.stringify(data));
+            },
+            error: function (msg) {
+                console.log(data);
+                alert('发送消息结果' + JSON.stringify(msg));
+            }
+        });
+    }
+
+    function cors() {
+        $.ajax({
+            type: 'get',
+            url: 'http://127.0.0.1:18100/cloud-account/sync',
+            contentType: "application/json",
+            xhrFields: {
+                withCredentials: true
+            },
+            headers: {
+                'Access-Control-Allow-Credentials' : true,
+                'Access-Control-Allow-Origin':'*',
+                'Access-Control-Allow-Methods':'*',
+                "userId": "1100838210912646"
+            },
+            success: function (data) {
+                alert("测试跨域成功:" + JSON.stringify(data));
+            },
+            error: function (msg) {
+                alert('测试跨域失败' + JSON.stringify(msg));
+            }
+        });
+    }
+
 </script>
 
 <body>
 
 <button onclick="login()">登录</button>
 <br><br><br>
-<button onclick="add()">新增设备</button><br><br><br>
+<button onclick="add()">新增设备</button>
+<br><br><br>
 
 <br><br><br>
 <button onclick="logout()">退出</button>
 <br>
+
+<br><br><br>
+<button onclick="send()">发送消息</button>
+<br>
+
+<br><br><br>
+<button onclick="cors()">测试跨域</button>
+<br>
+
 <br><br>
 <br><br>
 

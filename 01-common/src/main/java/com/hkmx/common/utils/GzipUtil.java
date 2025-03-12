@@ -49,6 +49,7 @@ public class GzipUtil {
 
     /**
      * 从bis读取数据并写入bos中
+     *
      * @param bis
      * @param bos
      * @throws IOException
@@ -56,7 +57,7 @@ public class GzipUtil {
     public static void readAndWrite(BufferedInputStream bis, BufferedOutputStream bos) throws IOException {
         byte[] buf = new byte[1024];
         int len;
-        while((len = bis.read(buf)) > 0) {
+        while ((len = bis.read(buf)) > 0) {
             bos.write(buf, 0, len);
         }
         bos.flush();

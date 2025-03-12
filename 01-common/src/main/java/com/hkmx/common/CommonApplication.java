@@ -18,6 +18,7 @@ public class CommonApplication extends SpringBootServletInitializer {
     public static void main(String[] args) {
         System.out.println("执行主方法");
         SpringApplication.run(CommonApplication.class, args);
+
     }
 
     @Override

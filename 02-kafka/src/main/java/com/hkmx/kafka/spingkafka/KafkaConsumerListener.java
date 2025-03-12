@@ -7,10 +7,10 @@ import org.springframework.kafka.annotation.KafkaListener;
 @Slf4j
 public class KafkaConsumerListener {
 
-    @KafkaListener(topics ={"mtest", }, groupId = "hkmx")
+    @KafkaListener(topics = {"mtest",}, groupId = "hkmx")
     // @KafkaListener(topics ="wtest", groupId = "hkmx")
     public void singleListen(ConsumerRecord<String, CustomeMessage> record) {
-        System.out.println("监听消息:" + record.value() );
+        System.out.println("监听消息:" + record.value());
         log.info("监听消息:" + GsonUtil.toJson(record.value()));
     }
 

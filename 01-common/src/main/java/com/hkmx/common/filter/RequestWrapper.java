@@ -41,16 +41,14 @@ public class RequestWrapper extends HttpServletRequestWrapper {
             if (inputStream != null) {
                 try {
                     inputStream.close();
-                }
-                catch (IOException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
             if (bufferedReader != null) {
                 try {
                     bufferedReader.close();
-                }
-                catch (IOException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
@@ -66,13 +64,16 @@ public class RequestWrapper extends HttpServletRequestWrapper {
             public boolean isFinished() {
                 return false;
             }
+
             @Override
             public boolean isReady() {
                 return false;
             }
+
             @Override
             public void setReadListener(ReadListener readListener) {
             }
+
             @Override
             public int read() throws IOException {
                 return byteArrayInputStream.read();

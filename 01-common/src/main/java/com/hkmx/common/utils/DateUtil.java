@@ -306,11 +306,11 @@ public class DateUtil {
     /**
      * 每天日期增加1天，且设置时间为 00:00:00
      *
-     * @param date      日期
+     * @param date 日期
      * @return 增加天数后的日期
      */
     public static Date addDayOne(Date date) {
-        String date1 = DateUtil.DateToString(date, DateStyle.YYYY_MM_DD)+" 00:00:00";
+        String date1 = DateUtil.DateToString(date, DateStyle.YYYY_MM_DD) + " 00:00:00";
         date = DateUtil.StringToDate(date1, DateStyle.YYYY_MM_DD_HH_MM);
         return addInteger(date, Calendar.DATE, 1);
     }

@@ -41,7 +41,6 @@ public class KafkaController {
         System.out.println(GsonUtil.toJson(o));
 
 
-
         // 使用事务
         // kafkaTemplate.executeInTransaction(new KafkaOperations.OperationsCallback() {
         //     @Override

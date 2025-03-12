@@ -4,6 +4,8 @@ package com.hkmx.elasticsearch;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.concurrent.ConcurrentHashMap;
+
 public class MyDemo {
 
     private static final Logger LOGGER = LogManager.getLogger(ElasticsearchDemo.class);
@@ -13,5 +15,8 @@ public class MyDemo {
         LOGGER.warn("warn");
         LOGGER.info("info");
         LOGGER.debug("debug");
+
+        ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
+        concurrentHashMap.put("name", "maoxingwen");
     }
 }

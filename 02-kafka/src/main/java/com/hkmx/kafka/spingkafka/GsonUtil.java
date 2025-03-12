@@ -21,7 +21,7 @@ public class GsonUtil {
         return gson.toJson(obj, type);
     }
 
-    public static <T> T fromJson(String str ,Class<T> clazz){
+    public static <T> T fromJson(String str, Class<T> clazz) {
         return gson.fromJson(str, clazz);
     }
 

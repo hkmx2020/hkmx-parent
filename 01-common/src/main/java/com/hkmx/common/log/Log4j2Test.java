@@ -9,13 +9,14 @@ import java.util.concurrent.Executors;
 
 public class Log4j2Test {
 
-    public static final Logger LOGGER =  LogManager.getLogger(Log4j2Test.class);
+    public static final Logger LOGGER = LogManager.getLogger(Log4j2Test.class);
 
     public static final ExecutorService executorService = Executors.newFixedThreadPool(1);
 
     public static void main(String[] args) throws InterruptedException {
         test01();
     }
+
     public static void test01() throws InterruptedException {
 
         Long i = 1L;
@@ -40,7 +41,7 @@ public class Log4j2Test {
         LOGGER.info("用户:{}", "maoxingwen");
 
         try {
-            int a  = 1/0;
+            int a = 1 / 0;
         } catch (Exception e) {
             LOGGER.error("异常", e);
         }

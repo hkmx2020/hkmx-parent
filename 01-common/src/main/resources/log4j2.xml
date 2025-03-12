@@ -4,7 +4,7 @@
 
     <properties>
         <property name="LOG_PATTERN">[%d{YYYY-MM-dd HH:mm:ss.SSS}][%-5level][%t][%c{10}:%L]: %msg%n</property>
-        <property name="LOG_HOME">D:/data/logs</property>
+        <property name="LOG_HOME">/mao/data/logs</property>
         <property name="application">common</property>
     </properties>
 
@@ -29,10 +29,10 @@
     </Appenders>
 
     <Loggers>
-       <!-- 自定义Logger-->
-        <!--<Logger name="com.hkmx" level="trace" additivity="false">
-            <AppenderRef ref="RollingFile"/>
-        </Logger>-->
+        <!-- 自定义Logger-->
+<!--        <Logger name="com.hkmx" level="trace" additivity="false">-->
+<!--            <AppenderRef ref="RollingFile"/>-->
+<!--        </Logger>-->
 
         <!--混合异步-->
         <AsyncLogger name="com.hkmx" level="info" includeLocation="false" additivity="false">

@@ -99,8 +99,8 @@ public class CustomConsumer {
                 consumer.commitSync();
                 System.out.println("最终提交");
             } catch (Exception e) {
-				System.out.println("关闭消费者提交异常");
-			} finally {
+                System.out.println("关闭消费者提交异常");
+            } finally {
                 consumer.close();
             }
         }

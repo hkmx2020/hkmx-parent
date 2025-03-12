@@ -18,7 +18,7 @@ public class Order {
      * 订单描述
      */
     @ColumnWidth(100)
-    @ExcelProperty({"主标题","订单描述"})
+    @ExcelProperty({"主标题", "订单描述"})
     private String description;
 
     public static void main(String[] args) {

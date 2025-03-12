@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE generatorConfiguration
-  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
-  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
     <classPathEntry
-      location="D:/dev/mysql-connector-java-5.1.38.jar"/>
+            location="D:/dev/mysql-connector-java-5.1.38.jar"/>
 
     <context id="DB2Tables" targetRuntime="MyBatis3">
         <!-- 		<plugin type="org.mybatis.generator.plugins.MapperConfigPlugin">
@@ -20,10 +20,10 @@
         </commentGenerator>
 
         <jdbcConnection
-          driverClass="com.mysql.jdbc.Driver"
-          connectionURL="jdbc:mysql://localhost:3306/rcedb_litsoft"
-          userId="root"
-          password="123456">
+                driverClass="com.mysql.jdbc.Driver"
+                connectionURL="jdbc:mysql://localhost:3306/rcedb_litsoft"
+                userId="root"
+                password="123456">
         </jdbcConnection>
 
         <!-- <javaTypeResolver > <property name="forceBigDecimals" value="false"
@@ -31,23 +31,23 @@
 
         <!-- 生成model类 -->
         <javaModelGenerator
-          targetPackage="com.hkmx.common.mybatis.model"
-          targetProject="src/main/java">
+                targetPackage="com.hkmx.common.mybatis.model"
+                targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
         <!-- 生成sql xml文件 -->
         <sqlMapGenerator
-          targetPackage="com.hkmx.common.mybatis.xml"
-          targetProject="src/main/java">
+                targetPackage="com.hkmx.common.mybatis.xml"
+                targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <!-- 生成mapper interface -->
         <javaClientGenerator type="XMLMAPPER"
-          targetPackage="com.hkmx.common.mybatis.mapper"
-          targetProject="src/main/java">
+                             targetPackage="com.hkmx.common.mybatis.mapper"
+                             targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
@@ -55,6 +55,6 @@
             <columnOverride column="first_level_type" javaType="java.lang.Integer" jdbcType="TINYINT"/>
             <columnOverride column="second_level_type" javaType="java.lang.Integer" jdbcType="TINYINT"/>
         </table>
-        
+
     </context>
 </generatorConfiguration>
